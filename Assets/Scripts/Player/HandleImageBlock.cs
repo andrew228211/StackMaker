@@ -23,6 +23,7 @@ public class HandleImageBlock : MonoBehaviour
         if(_listBlockEated.Count > 0)
         {
             block.transform.localPosition = _offset * -1 + _listBlockEated.Last().transform.localPosition;
+            UI.Instance.UpdateBlock(1);
         }
         else
         {
@@ -38,6 +39,7 @@ public class HandleImageBlock : MonoBehaviour
             _listBlockEated[_listBlockEated.Count - 1].transform.parent = null;
             _listBlockEated[_listBlockEated.Count - 1].SetActive(false);
             _listBlockEated.RemoveAt(_listBlockEated.Count - 1);
+            UI.Instance.UpdateBlock(-1);
         }
     }
     private void TurnOffAllBlock()

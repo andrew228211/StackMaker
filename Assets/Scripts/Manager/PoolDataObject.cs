@@ -67,7 +67,17 @@ public class PoolDataObject : MonoBehaviour
             {
                 var obj = pool.Value.Dequeue();
                 pool.Value.Enqueue(obj);
-                obj.gameObject.SetActive(false);
+                if(pool.Key.Equals(TypeDataObject.h_bridge)|| pool.Key.Equals(TypeDataObject.v_bridge))
+                {
+                    obj.objChild.gameObject.SetActive(false);
+                    obj.check = false;
+                }
+                else if(pool.Key.Equals(TypeDataObject.purpelDL)||pool.Key.Equals(TypeDataObject.purpelTR)
+                    || pool.Key.Equals(TypeDataObject.purpelTL) || pool.Key.Equals(TypeDataObject.purpelDR))
+                {
+                    obj.objChild.gameObject.SetActive(true);
+                }
+                obj.gameObject.SetActive(false);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
             }
         }
     }

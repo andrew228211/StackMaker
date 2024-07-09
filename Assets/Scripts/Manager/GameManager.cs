@@ -7,6 +7,7 @@ public class GameManager : Singleton<GameManager>
 {
     public static GameState gameState;
     [SerializeField]private CameraFollow _cameraFollow;
+    public bool isPlay;
     public void SetTargetForCameraFollow(Transform _target)
     {
         _cameraFollow.SetTarget(_target);
@@ -36,6 +37,7 @@ public class GameManager : Singleton<GameManager>
     private void Start()
     {
         ChangeState(GameState.GamePlay);
+        isPlay = false;
     }
     private static void Onit()
     {

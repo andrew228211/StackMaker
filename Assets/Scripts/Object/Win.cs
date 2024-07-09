@@ -9,6 +9,7 @@ public class Win : MonoBehaviour
     [SerializeField] GameObject chestClose;
     [SerializeField] GameObject chestOpen;
     [SerializeField] ParticleSystem particelOpenChest;
+    
     private Player _player;
     private void OnTriggerEnter(Collider other)
     {
@@ -19,6 +20,7 @@ public class Win : MonoBehaviour
             particelWinRight.Play();
             _player = other.GetComponent<Player>();
             _player.animator.SetInteger("Jump", 1);
+            UI.Instance.isWin = true;
             StartCoroutine(DelayTuroOffblock());
            
         }
@@ -32,7 +34,6 @@ public class Win : MonoBehaviour
          yield return new WaitForSeconds(0.2f);
         EventDispatcher.Instance.PostEvent(EventID.OnTurnOffAllBlock);
         Debug.Log(_player.animator.GetInteger("Jump") + " trang thai");
-        _player.animator.SetInteger("Jump", 0);
         _player.animator.SetInteger("Open", 1);
         StartCoroutine(OpenChest());
     }
@@ -47,6 +48,8 @@ public class Win : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         OffChest();
         _player.animator.SetInteger("Open", 0);
+        yield return new WaitForSeconds(1f);
+        UI.Instance.OnPopupWin();
     }
     private void OnChest()
     {

@@ -5,42 +5,67 @@ using UnityEngine;
 
 public class UI : Singleton<UI>
 {
+    
     private void Start()
     {
-        DataManager.Instance.Block = 0;
+        ResetTextBlock();
     }
     [Header("Home")]
     [SerializeField] private GameObject _panelHome;
-    private void InGame()
+    [SerializeField] private TextMeshProUGUI _txtLevel;
+    public void InGame()
     {
         _panelHome.SetActive(false);
+        _panelInGame.SetActive(true);
+        GameManager.Instance.isPlay = true;
     }
-    private void Home()
+    public void Home()
     {
+        _panelInGame.SetActive(false );
         _panelHome.SetActive(true);
+        GameManager.Instance.isPlay = false;
     }
     [Header("In Game")]
-    [SerializeField] private TextMeshProUGUI txtBlock;
-    public void UpdateBlock()
+    [SerializeField] private GameObject _panelInGame;
+    [SerializeField] private TextMeshProUGUI _txtBlock;
+    public void UpdateBlock(int _block)
     {
-        DataManager.Instance.Block += 1;
-        txtBlock.text += DataManager.Instance.Block;
-
+        DataManager.Instance.Block += _block;
+        _txtBlock.text = DataManager.Instance.Block.ToString();
+    }
+    public void ResetTextBlock()
+    {
+        DataManager.Instance.Block = 1;
+        _txtBlock.text = DataManager.Instance.Block.ToString();
     }
     [Header("Win Game")]
     [SerializeField] private GameObject _panelWin;
-    private void PopupWin()
+    public bool isWin;
+    public void OnPopupWin()
     {
         PoolDataObject.instance.TurnOffAllObject();
+        GameManager.Instance.isPlay = false;
+        _panelWin.SetActive(true );
     }
-    private void Replay()
+    private void OffPopupWin()
     {
-        
+        GameManager.Instance.isPlay = true;
+        _panelWin.SetActive(false);
+        isWin = false;
+        ResetTextBlock();
     }
-    private void NextLevel()
+    public void Replay()
+    {
+        _txtLevel.text = DataManager.Instance.CurrentLevel.ToString();
+        LevelManager.Instance.OnLoadLevel(DataManager.Instance.CurrentLevel);
+        OffPopupWin();
+    }
+    public void NextLevel()
     {
         DataManager.Instance.CurrentLevel += 1;
         LevelManager.Instance.OnLoadLevel(DataManager.Instance.CurrentLevel);
+        _txtLevel.text=DataManager.Instance.CurrentLevel.ToString();
+        OffPopupWin();
     }
 
 }

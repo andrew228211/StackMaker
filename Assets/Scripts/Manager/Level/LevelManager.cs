@@ -8,6 +8,7 @@ public class LevelManager : Singleton<LevelManager>
     [SerializeField] private List<GridData> _listGridData;
     public void Onit()
     {
+        DataManager.Instance.CurrentLevel = 1;
         OnLoadLevel(1);
     }
 

@@ -35,7 +35,7 @@ public class PlayerCollision : MonoBehaviour
     {
         yield return new WaitForSeconds(0.064f);
         EventDispatcher.Instance.PostEvent(EventID.OnRemoveBlock);
-        bridge.transform.GetChild(0).gameObject.SetActive(true);
+        bridge.objChild.gameObject.SetActive(true);
         bridge.check = true;
     }
     #region Create Raycast

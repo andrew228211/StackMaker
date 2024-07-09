@@ -19,13 +19,18 @@ public class PlayerInput : MonoBehaviour
     private void FixedUpdate()
     {
 
+        if (GameManager.Instance.isPlay == false)
+        {
+            _player.IsMoving = false;
+            return;
+        }
         if (!_player.IsMoving)
         {
             HandWithInput();
         }
-        else
+        else if(!UI.Instance.isWin)
         {
-            _isCollision = _playerCollision.HandleCollisionWithWall(); //Them dieu kien win o day de tat no di
+            _isCollision = _playerCollision.HandleCollisionWithWall();
         }
         if (_player.IsMoving && !_isCollision)
         {

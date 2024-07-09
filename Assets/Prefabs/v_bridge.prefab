@@ -100,6 +100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: 4
   check: 0
+  objChild: {fileID: 4237010982192905466}
 --- !u!65 &3904525625697219872
 BoxCollider:
   m_ObjectHideFlags: 0

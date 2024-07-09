@@ -49,6 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: 5
   check: 0
+  objChild: {fileID: 3122549066429157201}
 --- !u!1 &1956386026013455485
 GameObject:
   m_ObjectHideFlags: 0
