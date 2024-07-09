@@ -6,12 +6,7 @@ using UnityEngine;
 public class GameManager : Singleton<GameManager>
 {
     public static GameState gameState;
-    [SerializeField]private CameraFollow _cameraFollow;
-    public bool isPlay;
-    public void SetTargetForCameraFollow(Transform _target)
-    {
-        _cameraFollow.SetTarget(_target);
-    }
+    public bool isPlay; 
     public static void ChangeState(GameState newState)
     {
         gameState = newState;

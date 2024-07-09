@@ -6,35 +6,31 @@ using UnityEngine;
 
 public class PlayerInput : MonoBehaviour
 {
-    [SerializeField] Player _player;
-    [SerializeField] PlayerCollision _playerCollision;
     private Vector2 _startPoint;
     private Vector2 _endPoint;
     private Vector2 _dirMove;
     private Vector3 _input;
     [SerializeField] private float _speed;
     private bool _isCollision;
-    private Tween _tweenMove;
     
     private void FixedUpdate()
     {
 
         if (GameManager.Instance.isPlay == false)
         {
-            _player.IsMoving = false;
             return;
         }
-        if (!_player.IsMoving)
+        if (!Player.Instance.IsMoving)
         {
             HandWithInput();
         }
         else if(!UI.Instance.isWin)
         {
-            _isCollision = _playerCollision.HandleCollisionWithWall();
+            _isCollision = Player.Instance.playerCollision.HandleCollisionWithWall();
         }
-        if (_player.IsMoving && !_isCollision)
+        if (Player.Instance.IsMoving && !_isCollision)
         {
-            _player.rb.velocity = _input * Time.fixedDeltaTime * _speed;
+            Player.Instance.rb.velocity = _input * Time.fixedDeltaTime * _speed;
         }
     }
     #region Handle Input
@@ -53,16 +49,12 @@ public class PlayerInput : MonoBehaviour
                 if (_dirMove.x > 0)
                 {
                     _input = Vector3.forward;
-                    _player.dir = EPlayerDirection.TOP;
-                //    Debug.Log("Top");
-                  
+                    Player.Instance.dir = EPlayerDirection.TOP;               
                 }
                 else
                 {
                     _input = Vector3.back;
-                    _player.dir = EPlayerDirection.DOWN;
-                  //  Debug.Log("Down");
-
+                    Player.Instance.dir = EPlayerDirection.DOWN;
                 }
             }
             else if (Mathf.Abs(_dirMove.x) < Mathf.Abs(_dirMove.y))
@@ -70,18 +62,16 @@ public class PlayerInput : MonoBehaviour
                 if (_dirMove.y < 0)
                 {
                     _input = Vector3.right;
-                    _player.dir = EPlayerDirection.RIGHT;
-                  //  Debug.Log("Right");
+                    Player.Instance.dir = EPlayerDirection.RIGHT;
                 }
                 else
                 {
                     _input = Vector3.left;
-                    _player.dir = EPlayerDirection.LEFT;
-                 //   Debug.Log("Left");
+                    Player.Instance.dir = EPlayerDirection.LEFT;
                 }
             }
-            _player.animator.SetInteger("Jump", 0);
-            _player.IsMoving = true;
+            Player.Instance.animator.SetInteger("Jump", 0);
+            Player.Instance.IsMoving = true;
         }
     }
     #endregion

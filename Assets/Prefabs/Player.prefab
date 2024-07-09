@@ -294,7 +294,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.96126175, z: -0, w: -0.27563733}
   m_LocalPosition: {x: 0, y: -0.29999995, z: 0}
-  m_LocalScale: {x: -1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7636433585636379518}
@@ -9092,8 +9092,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dfd452dda774754bad89e7d8df14202, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 5326872102602889444}
-  _playerCollision: {fileID: 2889490440277512233}
   _speed: 500
 --- !u!114 &5326872102602889444
 MonoBehaviour:
@@ -9107,12 +9105,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6473eb09ba7f8bc47bac500687ed7d61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dontDestroyOnLoad: 0
   rb: {fileID: 1451304721832109737}
   tfrmPlayer: {fileID: 1855655348203851349}
   animator: {fileID: 3256056968779988188}
   dir: 1
   _isMoving: 0
   _isStuck: 0
+  playerCollision: {fileID: 0}
+  playerInput: {fileID: 0}
+  handleImageBlock: {fileID: 0}
 --- !u!114 &2889490440277512233
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9125,7 +9127,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 267373a787b08424786bbcb312bf9c07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 5326872102602889444}
   _layerMask:
     serializedVersion: 2
     m_Bits: 256
@@ -9143,7 +9144,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd00d1185830abf4e83af398b02f5251, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 5326872102602889444}
   _image: {fileID: 7172117557122311517}
   _listBlockEated: []
 --- !u!114 &-2144836163034848703
@@ -9160,6 +9160,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: 1
   check: 0
+  objChild: {fileID: 0}
 --- !u!136 &4411936469790397745
 CapsuleCollider:
   m_ObjectHideFlags: 0

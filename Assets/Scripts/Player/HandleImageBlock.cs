@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class HandleImageBlock : MonoBehaviour
 {
-    [SerializeField] private Player _player;
     [SerializeField] private Transform _image;
     private Vector3 _offset = new Vector3(0, 0.4f, 0);
     [SerializeField]private List<GameObject> _listBlockEated;
@@ -14,6 +13,11 @@ public class HandleImageBlock : MonoBehaviour
         EventDispatcher.Instance.RegisterListener(EventID.OnEatBlock, (x) => EatBlock());
         EventDispatcher.Instance.RegisterListener(EventID.OnRemoveBlock, (y) => RemoveBlock());
         EventDispatcher.Instance.RegisterListener(EventID.OnTurnOffAllBlock, (z) => TurnOffAllBlock());
+    }
+    public void ResetImage()
+    {
+        _listBlockEated.Clear();
+        _image.localPosition = Vector3.zero;
     }
     private void EatBlock()
     {

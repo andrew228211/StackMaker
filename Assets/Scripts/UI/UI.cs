@@ -44,6 +44,7 @@ public class UI : Singleton<UI>
     public void OnPopupWin()
     {
         PoolDataObject.instance.TurnOffAllObject();
+        Player.Instance.handleImageBlock.ResetImage();
         GameManager.Instance.isPlay = false;
         _panelWin.SetActive(true );
     }
@@ -53,6 +54,7 @@ public class UI : Singleton<UI>
         _panelWin.SetActive(false);
         isWin = false;
         ResetTextBlock();
+        Player.Instance.InitAttribute();
     }
     public void Replay()
     {

@@ -26,7 +26,6 @@ public class PoolDataObject : MonoBehaviour
             for (int i = 0; i < pool.size; i++)
             {
                 DataObject obj = Instantiate(pool.prefab,pool.parent);
-               // Debug.Log(obj.name + " " + obj.transform.position+" "+obj.transform.rotation);
                 obj.gameObject.SetActive(false);
                 objectPool.Enqueue(obj);
             }

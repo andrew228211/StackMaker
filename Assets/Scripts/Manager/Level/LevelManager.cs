@@ -8,14 +8,14 @@ public class LevelManager : Singleton<LevelManager>
     [SerializeField] private List<GridData> _listGridData;
     public void Onit()
     {
-        DataManager.Instance.CurrentLevel = 1;
-        OnLoadLevel(1);
+        DataManager.Instance.CurrentLevel = 0;
+        OnLoadLevel(0);
     }
 
     //Reset ket thuc Game
     public void OnReset()
     {
-
+        
     }
 
     //Load level: level bat dau tu 0
@@ -24,37 +24,33 @@ public class LevelManager : Singleton<LevelManager>
         _srcLevel = "Level/Level_" + level.ToString();
         Map map = FileHandle.LoadToJson<Map>(_srcLevel);
         _listGridData = map.arrToolData;
-        _listGridData.RemoveAt(_listGridData.Count - 1);
+     //   _listGridData.RemoveAt(_listGridData.Count - 1);
         foreach (GridData gridData in _listGridData)
         {
-
-            DataObject dataObject = GetObjectById(gridData.id);
-            //Debug.Log(dataObject.GetId() + " x " + gridData.id);
-            dataObject.transform.localPosition = CovertVector3(gridData.x, dataObject.transform.position.y, gridData.y);
             if (gridData.id == 1)
             {
                 AddObject(1, gridData);
+                Player.Instance.tfrmPlayer.localPosition= CovertVector3(gridData.x, 2.5f, -gridData.y);
+              
             }
-        }
+            else
+            {
+                DataObject dataObject = GetObjectById(gridData.id);
+                dataObject.transform.localPosition = CovertVector3(gridData.x, dataObject.transform.position.y, gridData.y);
+            }
+         }
     }
     private void AddObject(int id, GridData gridData)
     {
         DataObject dataObject = null;
-        if (id == 1)
-        {
-            dataObject = PoolDataObject.instance.GetObjet(TypeDataObject.eatBlock);
-            dataObject.transform.localPosition = CovertVector3(gridData.x, dataObject.transform.position.y, gridData.y);
-        }
+        dataObject = PoolDataObject.instance.GetObjet(TypeDataObject.eatBlock);
+        dataObject.transform.localPosition = CovertVector3(gridData.x, dataObject.transform.position.y, gridData.y);
     }
     private DataObject GetObjectById(int id)
     {
         DataObject dataObj = null;
         switch (id)
         {
-            case 1:
-                dataObj = PoolDataObject.instance.GetObjet(TypeDataObject.player);
-                dataObj.GetComponent<Player>().SetCamFollowPlayer();
-                break;
             case 2:
                 dataObj = PoolDataObject.instance.GetObjet(TypeDataObject.wall);
                 break;
