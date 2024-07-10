@@ -14,7 +14,7 @@ public class Player : Singleton<Player>
     [Header("Attribute")]
     public PlayerCollision playerCollision;
     public PlayerInput playerInput;
-    public HandleImageBlock handleImageBlock;
+    public ImagePlayer handleImageBlock;
     public bool IsMoving
     {
         get { return _isMoving; }
@@ -29,5 +29,10 @@ public class Player : Singleton<Player>
     {
         IsMoving = false;
         rb.velocity = Vector3.zero;
+        SetKinematic(false);
+    }
+    public void SetKinematic(bool _isKinematic)
+    {
+        rb.isKinematic = _isKinematic;
     }
 }

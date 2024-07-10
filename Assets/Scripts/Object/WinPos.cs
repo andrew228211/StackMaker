@@ -17,7 +17,7 @@ public class WinPos : MonoBehaviour
             particelWinLeft.Play();
             particelWinRight.Play();
             Player.Instance.animator.SetInteger("Jump", 1);
-            UI.Instance.isWin = true;
+            GameManager.Instance.isWin = true;
             StartCoroutine(DelayTuroOffblock());
            
         }
@@ -27,10 +27,8 @@ public class WinPos : MonoBehaviour
     {
         yield return new WaitForSeconds(0.2f);
         Player.Instance.animator.SetInteger("Jump", 0);
-        Debug.Log(Player.Instance.animator.GetInteger("Jump") +" trang thai");
          yield return new WaitForSeconds(0.2f);
         EventDispatcher.Instance.PostEvent(EventID.OnTurnOffAllBlock);
-        Debug.Log(Player.Instance.animator.GetInteger("Jump") + " trang thai");
         Player.Instance.animator.SetInteger("Open", 1);
         StartCoroutine(OpenChest());
     }
@@ -46,7 +44,7 @@ public class WinPos : MonoBehaviour
         OffChest();
         Player.Instance.animator.SetInteger("Open", 0);
         yield return new WaitForSeconds(1f);
-        UI.Instance.OnPopupWin();
+        GameManager.ChangeState(GameState.WinGame);
     }
     private void OnChest()
     {

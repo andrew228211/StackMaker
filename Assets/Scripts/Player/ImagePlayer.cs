@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HandleImageBlock : MonoBehaviour
+public class ImagePlayer : MonoBehaviour
 {
     [SerializeField] private Transform _image;
-    private Vector3 _offset = new Vector3(0, 0.4f, 0);
+    private Vector3 _offset = new Vector3(0, 0.2998985f, 0);
     [SerializeField]private List<GameObject> _listBlockEated;
+    [SerializeField] private Transform _parentBlock;
     private void OnEnable()
     {
         _listBlockEated = new List<GameObject>();
@@ -27,11 +28,11 @@ public class HandleImageBlock : MonoBehaviour
         if(_listBlockEated.Count > 0)
         {
             block.transform.localPosition = _offset * -1 + _listBlockEated.Last().transform.localPosition;
-            UI.Instance.UpdateBlock(1);
+            UIManager.Instance.GetUI<Canvas_InGame>().UpdateBlock(1);
         }
         else
         {
-            block.transform.localPosition = new Vector3(0, -0.3f, 0);
+            block.transform.localPosition = new Vector3(0, -0.2998985f, 0);
         }
         _listBlockEated.Add(block);
     }
@@ -40,10 +41,10 @@ public class HandleImageBlock : MonoBehaviour
         if (_listBlockEated != null)
         {
             _image.localPosition -= _offset;
-            _listBlockEated[_listBlockEated.Count - 1].transform.parent = null;
+            _listBlockEated[_listBlockEated.Count - 1].transform.parent = _parentBlock;
             _listBlockEated[_listBlockEated.Count - 1].SetActive(false);
             _listBlockEated.RemoveAt(_listBlockEated.Count - 1);
-            UI.Instance.UpdateBlock(-1);
+            UIManager.Instance.GetUI<Canvas_InGame>().UpdateBlock(-1);
         }
     }
     private void TurnOffAllBlock()

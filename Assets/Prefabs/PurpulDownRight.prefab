@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 3588603490247014671}
   - component: {fileID: 5450929279086219482}
   - component: {fileID: 6943511047269663156}
+  - component: {fileID: 3670056440491300899}
   m_Layer: 0
   m_Name: di
   m_TagString: Untagged
@@ -130,12 +131,25 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.9999993, y: 1.0000017, z: 1.0000031}
-  m_Center: {x: 0.0000010728838, y: 0.00000059604673, z: 3.1763738e-21}
+  m_Size: {x: 0.99999905, y: 1.0000014, z: 1.0363985}
+  m_Center: {x: 0.0000010728838, y: 0.0000005743522, z: 0.018198444}
+--- !u!114 &3670056440491300899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1360016528772208939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd95e2a7c10ca4b4e89b3b975e21cc97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 7680457528377536277}
 --- !u!1 &3186160278233602134
 GameObject:
   m_ObjectHideFlags: 0
@@ -251,8 +265,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8289819525174097748}
   - component: {fileID: 7680457528377536277}
-  - component: {fileID: 3951037771232183841}
-  - component: {fileID: 1609404976276270005}
   m_Layer: 0
   m_Name: zhuanjiao
   m_TagString: Untagged
@@ -298,40 +310,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &3951037771232183841
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6097193671775727818}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd95e2a7c10ca4b4e89b3b975e21cc97, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _animator: {fileID: 7680457528377536277}
---- !u!65 &1609404976276270005
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6097193671775727818}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.95397735, y: 0.16, z: 0.8404031}
-  m_Center: {x: 0.0769946, y: -0.00000023841858, z: -0.017810047}
 --- !u!1 &8393565802928353552
 GameObject:
   m_ObjectHideFlags: 0

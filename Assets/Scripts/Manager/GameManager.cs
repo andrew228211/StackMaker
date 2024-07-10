@@ -6,23 +6,24 @@ using UnityEngine;
 public class GameManager : Singleton<GameManager>
 {
     public static GameState gameState;
-    public bool isPlay; 
+    public bool isPlay;
+    public bool isWin;
     public static void ChangeState(GameState newState)
     {
         gameState = newState;
         switch (newState)
         {
-            case GameState.MainMenu:
-                UIManager.Instance.OpenUI<UIMainMenu>();
+            case GameState.Home:
+                UIManager.Instance.OpenUI<Canvas_Home>();
                 break;
-            case GameState.GamePlay:
-                Onit();
+            case GameState.InGame:
+                UIManager.Instance.OpenUI<Canvas_InGame>();
                 break;
-            case GameState.Finish:
-                break;
-            case GameState.Replay:
+            case GameState.WinGame:
+                UIManager.Instance.OpenUI<Canvas_WinGame>();
                 break;
             case GameState.Setting:
+                UIManager.Instance.OpenUI<Canvas_Setting>();
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(newState), newState, null);
@@ -31,8 +32,8 @@ public class GameManager : Singleton<GameManager>
     public static bool IsState(GameState state) => gameState == state;
     private void Start()
     {
-        ChangeState(GameState.GamePlay);
-        isPlay = false;
+        Onit();
+        ChangeState(GameState.Home);
     }
     private static void Onit()
     {
@@ -42,9 +43,8 @@ public class GameManager : Singleton<GameManager>
 public enum GameState
 {
   None=0,
-  MainMenu=1,
-  GamePlay=2,
-  Finish=3,
-  Replay=4,
+  Home=1,
+  InGame=2,
+  WinGame=3,
   Setting=5,
 }

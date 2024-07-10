@@ -65,6 +65,7 @@ public class PlayerCollision : MonoBehaviour
         {          
             Player.Instance.IsMoving = false;
             Player.Instance.rb.velocity = Vector2.zero;
+            Player.Instance.SetKinematic(true);
             Player.Instance.animator.SetInteger("Jump", 1);
             return true;
         }

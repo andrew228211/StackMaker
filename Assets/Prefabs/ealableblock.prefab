@@ -153,6 +153,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: 3
   check: 0
+  objChild: {fileID: 8863684012439103522}
 --- !u!1 &5922481894487733041
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,6 +12,13 @@ public class AnimPurpel : MonoBehaviour
             _animator.SetInteger("purpel", 0);
         }
     }
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            _animator.SetInteger("purpel", 0);
+        }
+    }
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))

@@ -72,7 +72,8 @@ public class PoolDataObject : MonoBehaviour
                     obj.check = false;
                 }
                 else if(pool.Key.Equals(TypeDataObject.purpelDL)||pool.Key.Equals(TypeDataObject.purpelTR)
-                    || pool.Key.Equals(TypeDataObject.purpelTL) || pool.Key.Equals(TypeDataObject.purpelDR))
+                    || pool.Key.Equals(TypeDataObject.purpelTL) || pool.Key.Equals(TypeDataObject.purpelDR)
+                    ||pool.Key.Equals(TypeDataObject.eatBlock))
                 {
                     obj.objChild.gameObject.SetActive(true);
                 }
