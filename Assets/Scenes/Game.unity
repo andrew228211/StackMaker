@@ -540,7 +540,6 @@ GameObject:
   m_Component:
   - component: {fileID: 255970776}
   - component: {fileID: 255970777}
-  - component: {fileID: 255970778}
   m_Layer: 0
   m_Name: UIManager
   m_TagString: Untagged
@@ -582,25 +581,6 @@ MonoBehaviour:
   - {fileID: 1530973716}
   - {fileID: 182103233}
   CanvasParentTF: {fileID: 0}
---- !u!114 &255970778
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 255970775}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 325ba98704065824a9861ea15fb20039, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dontDestroyOnLoad: 0
-  _panelHome: {fileID: 153920429}
-  _txtLevel: {fileID: 334336135}
-  _panelInGame: {fileID: 309806312}
-  _txtBlock: {fileID: 1453937107}
-  _panelWin: {fileID: 875459965}
-  isWin: 0
 --- !u!1 &286324799
 GameObject:
   m_ObjectHideFlags: 0
@@ -1403,7 +1383,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 255970778}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UI, Assembly-CSharp
         m_MethodName: Home
         m_Mode: 1
