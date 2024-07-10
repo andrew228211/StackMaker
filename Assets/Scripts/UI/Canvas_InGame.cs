@@ -8,9 +8,11 @@ using UnityEngine;
 public class Canvas_InGame : UICanvas
 {
     [SerializeField] private TextMeshProUGUI _txtBlock;
+    private int _block;
     public override void Setup()
     {
         base.Setup();
+        _block = 0;
         UpdateBlock(1);
         GameManager.Instance.isPlay = true;
     }
@@ -18,11 +20,16 @@ public class Canvas_InGame : UICanvas
     {
         DataManager.Instance.Block = 0;
         _txtBlock.text = "0";
+        _block = 0;
     }
-    public void UpdateBlock(int _block)
+    public void UpdateBlock(int block)
     {
-        DataManager.Instance.Block += _block;
-        _txtBlock.text = DataManager.Instance.Block.ToString();
+        if (block >0)
+        {
+            DataManager.Instance.Block += block;
+        }
+        _block += block;
+        _txtBlock.text = _block.ToString();
     }
     public void SettingsButton()
     {

@@ -1,16 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Canvas_WinGame : UICanvas
 {
-
+    [SerializeField] private TextMeshProUGUI txtScore;
     public override void Setup()
     {
         base.Setup();
         PoolDataObject.instance.TurnOffAllObject();
         Player.Instance.handleImageBlock.ResetImage();
         GameManager.Instance.isPlay = false;
+        txtScore.text = DataManager.Instance.Block.ToString();
     }
     public void InGameButton()
     {
