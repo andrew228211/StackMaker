@@ -8,9 +8,9 @@ public class HandMove : MonoBehaviour
     private Tween _handTween;
    public void MoveHandTutorial()
    {
-        _handTween = transform.DOMoveX(8, 1f).SetEase(Ease.Linear).OnComplete(() =>
+        _handTween = transform.DOMoveX(10, 1f).SetEase(Ease.Linear).OnComplete(() =>
         {
-            _handTween = transform.DOMoveX(-8, 1f).SetEase(Ease.Linear).OnComplete(() =>
+            _handTween = transform.DOMoveX(-10, 1f).SetEase(Ease.Linear).OnComplete(() =>
             {
                 MoveHandTutorial();
             });

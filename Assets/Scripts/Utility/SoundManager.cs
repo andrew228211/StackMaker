@@ -15,12 +15,6 @@ namespace AT_InGame
         public AudioClip[] victoryClips;
         public AudioClip flyCoinClip;
 
-        public AudioClip bigbangClip;
-        public AudioClip ufoClip;
-
-        public AudioClip carClip;
-
-        public AudioClip carVaChamClip;
         private void Awake()
         {
             if (instance == null)
@@ -105,22 +99,6 @@ namespace AT_InGame
         public void PlayLose()
         {
             PlaySfx(loseClip);
-        }
-        public void PlayBigBang()
-        {
-            PlaySfx(bigbangClip); 
-        }
-        public void PlayCar()
-        {
-            PlaySfx(carClip);
-        }
-        public void PlayCarVaCham()
-        {
-            PlaySfx(carVaChamClip);
-        }
-        public void PlayUFO()
-        {
-            PlaySfx(ufoClip);
         }
         public void PlayVictory()
         {

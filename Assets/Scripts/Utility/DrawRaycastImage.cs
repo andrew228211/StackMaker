@@ -1,39 +1,21 @@
-using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.UI;
-#if UNITY_EDITOR
+using System.Collections;
+using System.Collections.Generic;
 using UnityEditor;
-#endif
-/// <summary>
-/// I also needed this resource for a while, so I decided to make a MacGyverism.
-/// it is only a partial and visual remedy in response to the topic:
-/// https://forum.unity.com/threads/ui-image-component-raycast-padding-needs-a-gizmo.1019260/
-/// how to config: https://imgur.com/a/NVpHgzu 
-/// I hope it helps.
-/// @AllanSamurai
-/// </summary>
-[RequireComponent(typeof(RectTransform))]
-public class RaycastPaddingHelper : UIBehaviour
-{
-#if UNITY_EDITOR && UNITY_2020_3_OR_NEWER
+using UnityEngine;
+using UnityEngine.UI;
 
-    #region https://github.com/Unity-Technologies/UnityCsReference/blob/61f92bd79ae862c4465d35270f9d1d57befd1761/Editor/Mono/Inspector/RectTransformEditor.cs#L24-L26
+[RequireComponent(typeof(RectTransform))]
+public class DrawRaycastImage : MonoBehaviour
+{
     private static Vector2 kShadowOffset = new Vector2(1, -1);
     private static Color kShadowColor = new Color(0, 0, 0, 0.5f);
     private const float kDottedLineSize = 5f;
-    #endregion
-
     void OnDrawGizmos()
     {
-        Text txt = GetComponent<Text>();
         Image image = GetComponent<Image>();
         Vector4 raycastPadding = new Vector4();
-        if (txt != null) raycastPadding = txt.raycastPadding;
-        if (image != null) raycastPadding = image.raycastPadding;
-
+        raycastPadding = image.raycastPadding;
         RectTransform gui = GetComponent<RectTransform>();
-
-        #region https://github.com/Unity-Technologies/UnityCsReference/blob/61f92bd79ae862c4465d35270f9d1d57befd1761/Editor/Mono/Inspector/RectTransformEditor.cs#L646-L660
         Rect rectInOwnSpace = gui.rect;
         // Rect rectInUserSpace = rectInOwnSpace;
         Rect rectInParentSpace = rectInOwnSpace;
@@ -49,31 +31,14 @@ public class RaycastPaddingHelper : UIBehaviour
 
             guiParent = parentSpace.GetComponent<RectTransform>();
         }
-        #endregion
-
-        // patSilva's post: https://forum.unity.com/threads/ui-image-component-raycast-padding-needs-a-gizmo.1019260/#post-6828020
-        // The image.raycastPadding order of the Vector4 is:
-        // X = Left
-        // Y = Bottom
-        // Z = Right
-        // W = Top
-
         Rect paddingRect = new Rect(rectInParentSpace);
         paddingRect.xMin += raycastPadding.x;
         paddingRect.xMax -= raycastPadding.z;
         paddingRect.yMin += raycastPadding.y;
         paddingRect.yMax -= raycastPadding.w;
-
-        // uncomment below line to show only when rect tool is active
-        // if (Tools.current == Tool.Rect)
-        {
-            //change the color of the handles as you wish
-            Handles.color = Color.green;
-            DrawRect(paddingRect, parentSpace, true);
-        }
+        Handles.color = Color.green;
+        DrawRect(paddingRect, parentSpace, true);
     }
-
-    #region https://github.com/Unity-Technologies/UnityCsReference/blob/61f92bd79ae862c4465d35270f9d1d57befd1761/Editor/Mono/Inspector/RectTransformEditor.cs#L618-L638
     void DrawRect(Rect rect, Transform space, bool dotted)
     {
         Vector3 p0 = space.TransformPoint(new Vector2(rect.x, rect.y));
@@ -95,9 +60,6 @@ public class RaycastPaddingHelper : UIBehaviour
             DrawDottedLineWithShadow(kShadowColor, kShadowOffset, p3, p0, kDottedLineSize);
         }
     }
-    #endregion
-
-    #region https://github.com/Unity-Technologies/UnityCsReference/blob/61f92bd79ae862c4465d35270f9d1d57befd1761/Editor/Mono/Inspector/RectHandles.cs#L278-L296
     public static void DrawDottedLineWithShadow(Color shadowColor, Vector2 screenOffset, Vector3 p1, Vector3 p2, float screenSpaceSize)
     {
         Camera cam = Camera.current;
@@ -117,7 +79,4 @@ public class RaycastPaddingHelper : UIBehaviour
         Handles.color = oldColor;
         Handles.DrawDottedLine(p1, p2, screenSpaceSize);
     }
-    #endregion
-
-#endif
 }
