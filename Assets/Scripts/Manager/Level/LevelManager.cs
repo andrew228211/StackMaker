@@ -9,6 +9,7 @@ public class LevelManager : Singleton<LevelManager>
     public void Onit()
     {
         DataManager.Instance.CurrentLevel = 0;
+        GameManager.Instance.isWin=false;
         OnLoadLevel(0);
     }
 

@@ -17,7 +17,7 @@ public class PlayerInput : MonoBehaviour
     private void FixedUpdate()
     {
 
-        if (GameManager.Instance.isPlay == false)
+        if (GameManager.gameState!=GameState.InGame)
         {
             return;
         }

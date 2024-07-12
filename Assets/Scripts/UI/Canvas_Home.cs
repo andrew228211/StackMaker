@@ -24,7 +24,7 @@ public class Canvas_Home : UICanvas
     public void TouchToPlayButton()
     {
         Close(0);
-        UIManager.Instance.OpenUI<Canvas_InGame>();
+        GameManager.ChangeState(GameState.InGame);
     }
     public void SettingButton()
     {

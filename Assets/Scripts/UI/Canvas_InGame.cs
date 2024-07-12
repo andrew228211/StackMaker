@@ -14,7 +14,7 @@ public class Canvas_InGame : UICanvas
         base.Setup();
         _block = 0;
         UpdateBlock(1);
-        GameManager.Instance.isPlay = true;
+        GameManager.gameState = GameState.InGame;
     }
     public void ResetBlock()
     {
@@ -34,11 +34,9 @@ public class Canvas_InGame : UICanvas
     public void SettingsButton()
     {
         UIManager.Instance.OpenUI<Canvas_Setting>().SetState(this);
-        GameManager.Instance.isPlay = true;
     }
     public void HomeButton()
     {
         UIManager.Instance.OpenUI<Canvas_Home>();
-        GameManager.Instance.isPlay = false;
     }
 }

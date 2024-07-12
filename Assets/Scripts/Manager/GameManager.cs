@@ -6,7 +6,6 @@ using UnityEngine;
 public class GameManager : Singleton<GameManager>
 {
     public static GameState gameState;
-    public bool isPlay;
     public bool isWin;
     public static void ChangeState(GameState newState)
     {

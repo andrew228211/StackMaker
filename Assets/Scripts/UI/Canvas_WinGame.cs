@@ -11,7 +11,6 @@ public class Canvas_WinGame : UICanvas
         base.Setup();
         PoolDataObject.instance.TurnOffAllObject();
         Player.Instance.handleImageBlock.ResetImage();
-        GameManager.Instance.isPlay = false;
         txtScore.text = DataManager.Instance.Block.ToString();
     }
     public void InGameButton()
@@ -31,12 +30,10 @@ public class Canvas_WinGame : UICanvas
         DataManager.Instance.CurrentLevel += 1;
         LevelManager.Instance.OnLoadLevel(DataManager.Instance.CurrentLevel);
         UIManager.Instance.OpenUI<Canvas_InGame>().ResetBlock();
-
     }
     private void OffCanvas()
     {
         Close(0);
-        GameManager.Instance.isPlay = true;
         GameManager.Instance.isWin = false;
         Player.Instance.InitAttribute();
     }
